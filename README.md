@@ -96,9 +96,9 @@ graph TD
 
 &#x20;       i) Clone the Repo:
 
-&#x20;             git clone https://github.com/yourusername/FactGuard-AI.git
+&#x20;             git clone https://github.com/Vinay8074240/FactGuardAI.git
 
-&#x20;             cd FactGuard-AI
+&#x20;             cd FactGuardAI
 
 &#x20;       ii) Create Virtual Environment:
 
