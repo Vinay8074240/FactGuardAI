@@ -55,7 +55,7 @@ FactGuard AI is a multi-agent system built on CrewAI and powered by Google Gemin
 graph TD
     %% User Interface Layer
     User[User] -->|1. Enters Claim/Topic| ST_UI[Streamlit UI]
-    ST_UI -->|2. Triggers Workflow| Main_Orch[Main Orchestrator (main.py)]
+    ST_UI -->|2. Triggers Workflow| Main_Orch[Main Orchestrator main.py]
 
     %% Agent & Orchestration Layer
     subgraph CrewAI_Framework [CrewAI Multi-Agent Squad]
