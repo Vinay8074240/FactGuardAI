@@ -62,7 +62,7 @@ graph TD
         Agent_Res -->|4. Collects Data| Agent_Ana[Data Analyst]
         Agent_Ana -->|5. Structures Facts| Agent_Cri[Fact-Check Critic]
         %% Feedback Loop
-        Agent_Cri -.->|6. Loop Back if needed| Agent_Res
+        Agent_Cri -->|6. Loop Back if needed| Agent_Res
     end
     %% External Tools & LLM Layer
     subgraph External_Integrations [External Tools & Brain]
