@@ -1,0 +1,7 @@
+crewai
+crewai_tools
+langchain-openai
+langchain-tavily
+python-dotenv
+pinecone-client
+streamlit
