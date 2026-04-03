@@ -51,91 +51,36 @@ FactGuard AI is a multi-agent system built on CrewAI and powered by Google Gemin
 
 
 
-%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#e1f5fe', 'edgeLabelBackground':'#ffffff', 'tertiaryColor': '#fff'}}}%%
-
 graph TD
+    %% User Interface Layer
+    User[User] -->|1. Enters Claim/Topic| ST_UI[Streamlit UI]
+    ST_UI -->|2. Triggers Workflow| Main_Orch[Main Orchestrator (main.py)]
 
-&#x20;   %% User Interface Layer
+    %% Agent & Orchestration Layer
+    subgraph CrewAI_Framework [CrewAI Multi-Agent Squad]
+        direction TB
+        Main_Orch -->|3. Kickoff| Agent_Res[Lead Researcher]
+        Agent_Res -->|4. Collects Data| Agent_Ana[Data Analyst]
+        Agent_Ana -->|5. Structures Facts| Agent_Cri[Fact-Check Critic]
 
-&#x20;   User\[👤 User] -->|1. Enters Claim/Topic| ST\_UI\[💻 Streamlit UI]
+        %% Feedback Loop
+        Agent_Cri -.->|6. Loop Back if needed| Agent_Res
+    end
 
-&#x20;   ST\_UI -->|2. Triggers Workflow| Main\_Orch\[⚙️ Main Orchestrator (main.py)]
+    %% External Tools & LLM Layer
+    subgraph External_Integrations [External Tools & Brain]
+        Agent_Res -->|7. Search Query| Tool_Tavily[Tavily Search API]
+        Tool_Tavily -->|8. Results| Agent_Res
 
+        Agent_Res -->|9. Reasoning| LLM_Gemini[Google Gemini]
+        Agent_Ana -->|9. Reasoning| LLM_Gemini
+        Agent_Cri -->|9. Reasoning| LLM_Gemini
+    end
 
-
-&#x20;   %% Agent \& Orchestration Layer
-
-&#x20;   subgraph CrewAI\_Framework \[🕵️‍♂️ CrewAI Multi-Agent Squad]
-
-&#x20;       direction TB
-
-&#x20;       Main\_Orch -->|3. Kickoff| Agent\_Res\[🔍 Lead Researcher]
-
-&#x20;       Agent\_Res -->|4. Collects Data| Agent\_Ana\[📊 Data Analyst]
-
-&#x20;       Agent\_Ana -->|5. Structures Facts| Agent\_Cri\[🛡️ Fact-Check Critic]
-
-&#x20;       
-
-&#x20;       %% Handoff/Feedback Loop
-
-&#x20;       Agent\_Cri -.->|6a. Hallucination Alert -> Loop Back| Agent\_Res
-
-&#x20;   end
-
-
-
-&#x20;   %% External Tools \& LLM Layer
-
-&#x20;   subgraph External\_Integrations \[🌐 External Tools \& Brain]
-
-&#x20;       Agent\_Res -->|7. Search Query| Tool\_Tavily\[🌐 Tavily Search API]
-
-&#x20;       Tool\_Tavily -->|8. Raw Search Results| Agent\_Res
-
-
-
-&#x20;       %% The "Brain" of the Agents
-
-&#x20;       Agent\_Res \& Agent\_Ana \& Agent\_Cri <-->|9. Reasoning \& Synthesis| LLM\_Gemini\[🧠 Google Gemini 2.5 Flash]
-
-&#x20;   end
-
-
-
-&#x20;   %% Final Output Layer
-
-&#x20;   Agent\_Cri -->|10. Final Verified Report| Main\_Orch
-
-&#x20;   Main\_Orch -->|11. Displays Results| ST\_UI
-
-&#x20;   ST\_UI -->|12. Presents Findings \& Sources| User
-
-
-
-&#x20;   %% Styling
-
-&#x20;   classDef ui fill:#e3f2fd,stroke:#1565c0,stroke-width:2px,color:#000;
-
-&#x20;   classDef orch fill:#fff9c4,stroke:#fbc02d,stroke-width:2px,color:#000;
-
-&#x20;   classDef agent fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px,stroke-dasharray: 5 5,color:#000;
-
-&#x20;   classDef tool fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px,color:#000;
-
-&#x20;   classDef brain fill:#ffebee,stroke:#c62828,stroke-width:2px,color:#000;
-
-
-
-&#x20;   class User,ST\_UI ui;
-
-&#x20;   class Main\_Orch orch;
-
-&#x20;   class Agent\_Res,Agent\_Ana,Agent\_Cri agent;
-
-&#x20;   class Tool\_Tavily tool;
-
-&#x20;   class LLM\_Gemini brain;
+    %% Final Output Layer
+    Agent_Cri -->|10. Final Report| Main_Orch
+    Main_Orch -->|11. Display Results| ST_UI
+    ST_UI -->|12. Show Output| User
 
 
 
