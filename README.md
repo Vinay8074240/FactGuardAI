@@ -26,7 +26,7 @@ A multi-agent orchestrator that separates the "thinking" process into distinct r
 
 
 
-FactGuard AI is a multi-agent system built on CrewAI and powered by Google Gemini 2.5 Flash. It uses a Sequential Agentic Pattern to verify user claims:
+FactGuard AI is a multi-agent system built on CrewAI and powered by Groq / Llama-3-8B. It uses a Sequential Agentic Pattern to verify user claims:
 
 * **Lead Researcher** : Breaks the claim into queries and uses Tavily Search to find 5+ high-authority sources.
 * **Data Analyst** : Processes the raw search results into structured factual bullet points.
@@ -39,7 +39,7 @@ FactGuard AI is a multi-agent system built on CrewAI and powered by Google Gemin
 
 
 * **Orchestration Framework** : CrewAI
-* **LLM (Brain)** : Google Gemini 2.5 Flash
+* **LLM (Brain)** : Groq / Llama-3-8B
 * **Search Infrastructure** : Tavily AI
 * **Interface** : Streamlit
 * **Deployment** : Hugging Face Spaces
@@ -111,33 +111,29 @@ graph TD
 * **API Keys:** Google AI Studio (Gemini), Tavily AI.
 * **Setup Steps:**
 
+
 &#x20;       i) Clone the Repo:
 
 &#x20;             git clone https://github.com/Vinay8074240/FactGuardAI.git
 
 &#x20;             cd FactGuardAI
 
-&#x20;       ii) Create Virtual Environment:
-
-&#x20;             python -m venv venv
-
-&#x20;             .\\venv\\Scripts\\activate
-
-&#x20;       iii) Install Dependencies:
+&#x20;       ii) Install Dependencies:
 
 &#x20;              pip install -r requirements.txt
 
-&#x20;       iv) Configure Environment:
+&#x20;       iii) Configure Environment:
 
 &#x20;              Create a .env file in the root:
 
-&#x20;                GOOGLE\_API\_KEY=your\_gemini\_key
+&#x20;                GROQ\_API\_KEY=your\_groq\_key
 
 &#x20;                TAVILY\_API\_KEY=your\_tavily\_key
 
-&#x20;        v) Run the App:
+&#x20;        iv) Run the App:
 
 &#x20;               streamlit run app.py
+
 
 ###### 
 
@@ -146,7 +142,7 @@ graph TD
 
 
 1. **Problem:** Open AI Quota Limit: Encountered 429 Insufficient Quota during testing.
-**Solution:** Migrated the LLM backend to Google Gemini 2.5 Flash using langchain-google-genai for a more sustainable free tier.
+**Solution:** Migrated the LLM backend to  Groq / Llama-3-8B using crewai[litellm] for a more sustainable free tier.
 2. **Problem:** Python Version Conflict: Python 3.14 (bleeding edge) caused library installation failures.
 **Solution:** Downgraded local environment to Python 3.12, ensuring compatibility with pre-built "wheels" for NumPy and CrewAI.
 3. **Problem:** Agent Hallucinations: Initial researcher agents accepted blog posts as "facts."
@@ -160,7 +156,6 @@ graph TD
 
 
 * CrewAI Documentation
-* Google AI Studio (Gemini API)
 * Tavily Search API Guide
 * Hugging Face Streamlit Deployment Guide
 
