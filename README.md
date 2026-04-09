@@ -57,7 +57,7 @@ graph TD
     User[👤 User] -->|1. Enters Claim| UI(🖥️ Streamlit Web Interface);
     
     %% Orchestration Layer
-    subgraph CrewAI Orchestrator [🛠️ CrewAI Agentic Orchestrator (Sequential Process)]
+    subgraph CrewAI Orchestrator [🛠️ CrewAI Agentic Orchestrator]
         Researcher[🔍 Lead Researcher Agent]
         Analyst[📊 Data Analyst Agent]
         Critic[⚖️ Fact-Check Critic Agent]
