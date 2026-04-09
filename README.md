@@ -52,100 +52,56 @@ FactGuard AI is a multi-agent system built on CrewAI and powered by Google Gemin
 
 
 ```mermaid
-<<<<<<< HEAD
-
-=======
->>>>>>> 768d2e7195987e285b8e368939641c832d547c04
 graph TD
-    %% User Interface Layer
-    User[User] -->|1. Enters Claim/Topic| ST_UI[Streamlit UI]
-    ST_UI -->|2. Triggers Workflow| Main_Orch[Main Orchestrator main.py]
-
-    %% Agent & Orchestration Layer
-    subgraph CrewAI_Framework [CrewAI Multi-Agent Squad]
-        direction TB
-        Main_Orch -->|3. Kickoff| Agent_Res[Lead Researcher]
-        Agent_Res -->|4. Collects Data| Agent_Ana[Data Analyst]
-        Agent_Ana -->|5. Structures Facts| Agent_Cri[Fact-Check Critic]
-
-<<<<<<< HEAD
-&#x20;   User\[User] -->|1. Enters Claim/Topic| ST\_UI\[Streamlit UI]
-
-&#x20;   ST\_UI -->|2. Triggers Workflow| Main\_Orch\[Main Orchestrator main.py]
-=======
-        %% Feedback Loop
-        Agent_Cri -->|6. Loop Back if needed| Agent_Res
+    %% User and Interface
+    User[👤 User] -->|1. Enters Claim| UI(🖥️ Streamlit Web Interface);
+    
+    %% Orchestration Layer
+    subgraph CrewAI Orchestrator [🛠️ CrewAI Agentic Orchestrator (Sequential Process)]
+        Researcher[🔍 Lead Researcher Agent]
+        Analyst[📊 Data Analyst Agent]
+        Critic[⚖️ Fact-Check Critic Agent]
     end
-
-    %% External Tools & LLM Layer
-    subgraph External_Integrations [External Tools & Brain]
-        Agent_Res -->|7. Search Query| Tool_Tavily[Tavily Search API]
-        Tool_Tavily -->|8. Results| Agent_Res
->>>>>>> 768d2e7195987e285b8e368939641c832d547c04
-
-        Agent_Res -->|9. Reasoning| LLM_Gemini[Google Gemini]
-        Agent_Ana -->|9. Reasoning| LLM_Gemini
-        Agent_Cri -->|9. Reasoning| LLM_Gemini
+    
+    UI -->|2. Kickoff Crew| CrewAI Orchestrator;
+    
+    %% Tool and API Layer
+    subgraph Data Tools [🌐 Real-Time Data Layer]
+        Tavily[🦅 Tavily Search API]
     end
+    
+    subgraph Intelligence Layer [🧠 LLM Inference Layer]
+        Groq[🏎️ Groq / Llama-3-8B]
+        Gemini[✨ Gemini 2.5 Flash]
+    end
+    
+    %% Agent Communication and Tool Calls
+    CrewAI Orchestrator -->|Internal Handoff| Researcher;
+    Researcher -->|3. Tool Call| Tavily;
+    Tavily -->|4. Search Snippets (k=2)| Researcher;
+    
+    Researcher -->|5. Forward Facts| Analyst;
+    Analyst -->|6. Call LLM for Logic| Intelligence Layer;
+    Intelligence Layer -->|7. Factual Inference| Analyst;
+    
+    Analyst -->|8. Forward Analysis| Critic;
+    Critic -->|9. Hallucination Check| Intelligence Layer;
+    Intelligence Layer -->|10. Validation & Score| Critic;
+    
+    %% Final Output
+    Critic -->|11. Final Report| CrewAI Orchestrator;
+    CrewAI Orchestrator -->|12. Display Result| UI;
+    UI -->|13. Final Verified Verdict| User;
 
-<<<<<<< HEAD
-
-&#x20;   %% Agent \& Orchestration Layer
-
-&#x20;   subgraph CrewAI\_Framework \[CrewAI Multi-Agent Squad]
-
-&#x20;       direction TB
-
-&#x20;       Main\_Orch -->|3. Kickoff| Agent\_Res\[Lead Researcher]
-
-&#x20;       Agent\_Res -->|4. Collects Data| Agent\_Ana\[Data Analyst]
-
-&#x20;       Agent\_Ana -->|5. Structures Facts| Agent\_Cri\[Fact-Check Critic]
-
-
-
-&#x20;       %% Feedback Loop
-
-&#x20;       Agent\_Cri -->|6. Loop Back if needed| Agent\_Res
-
-&#x20;   end
-
-
-
-&#x20;   %% External Tools \& LLM Layer
-
-&#x20;   subgraph External\_Integrations \[External Tools \& Brain]
-
-&#x20;       Agent\_Res -->|7. Search Query| Tool\_Tavily\[Tavily Search API]
-
-&#x20;       Tool\_Tavily -->|8. Results| Agent\_Res
-
-
-
-&#x20;       Agent\_Res -->|9. Reasoning| LLM\_Gemini\[Google Gemini]
-
-&#x20;       Agent\_Ana -->|9. Reasoning| LLM\_Gemini
-
-&#x20;       Agent\_Cri -->|9. Reasoning| LLM\_Gemini
-
-&#x20;   end
-
-
-
-&#x20;   %% Final Output Layer
-
-&#x20;   Agent\_Cri -->|10. Final Report| Main\_Orch
-
-&#x20;   Main\_Orch -->|11. Display Results| ST\_UI
-
-&#x20;   ST\_UI -->|12. Show Output| User
-
-=======
-    %% Final Output Layer
-    Agent_Cri -->|10. Final Report| Main_Orch
-    Main_Orch -->|11. Display Results| ST_UI
-    ST_UI -->|12. Show Output| User
->>>>>>> 768d2e7195987e285b8e368939641c832d547c04
+    %% Styling for clarity
+    style User fill:#fff,stroke:#333,stroke-width:2px;
+    style UI fill:#e1f5fe,stroke:#0277bd,stroke-width:2px;
+    style CrewAI Orchestrator fill:#fff,stroke:#000,stroke-width:2px,stroke-dasharray: 5 5;
+    style Researcher fill:#f9fbe7,stroke:#827717,stroke-width:2px;
+    style Analyst fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px;
+    style Critic fill:#e0f2f1,stroke:#00695c,stroke-width:2px;
+    style Tavily fill:#fff3e0,stroke:#e65100,stroke-width:2px;
+    style Intelligence Layer fill:#fff,stroke:#000,stroke-width:2px;
 ```
 
 
