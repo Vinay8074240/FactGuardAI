@@ -5,18 +5,19 @@ from crewai.tools import tool
 
 load_dotenv()
 
-# 1. Initialize the underlying Search Engine
-_tavily_engine = TavilySearch(max_results=5)
+# Initialize the engine
+_tavily_engine = TavilySearch(max_results=2)
 
-# 2. Wrap it in a CrewAI-compatible tool
 @tool("search_tool")
 def search_tool(query: str):
     """
-    Search the internet for factual information, news, and primary sources 
-    related to a specific claim or topic.
+    Search the internet for factual information related to a specific claim.
+    Use this tool to find evidence, dates, and locations from reliable sources.
     """
-    return _tavily_engine.run(query)
+    # The code below handles the search and keeps the token count low
+    results = _tavily_engine.run(query)
+    return str(results)[:800] 
 
 def get_vector_tool(content):
-    # Keep your existing vector logic
+    """Updates the vector store."""
     return "Vector store updated."

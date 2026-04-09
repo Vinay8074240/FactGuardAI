@@ -1,7 +1,4 @@
-crewai
-crewai_tools
-langchain-openai
+crewai[litellm]
 langchain-tavily
 python-dotenv
-pinecone-client
 streamlit
