@@ -172,6 +172,5 @@ graph TD
 ###### **10. Screenshots**
 
 
-
-Note: Replace these with your actual images!
+![FactGuard UI](assets/ss3.png)
 
