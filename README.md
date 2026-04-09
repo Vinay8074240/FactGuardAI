@@ -72,7 +72,6 @@ graph TD
     
     subgraph Intelligence ["LLM Inference Layer"]
         Groq[Groq / Llama-3-8B]
-        Gemini[Gemini 2.5 Flash]
     end
     
     %% Agent Communication and Tool Calls
