@@ -165,7 +165,7 @@ graph TD
 
 
 
-🎥 Click Here to Watch the Demo Video(Showcasing Local Run, Agent Logic, and Hugging Face Deployment)
+<video src="https://github.com/Vinay8074240/FactGuardAI/assets/demo.mp4" width="100%" controls></video>
 
 
 
@@ -173,4 +173,8 @@ graph TD
 
 
 ![FactGuard UI](assets/ss3.png)
+
+![FactGuard UI](assets/ss2.png)
+
+![FactGuard UI](assets/ss1.png)
 
