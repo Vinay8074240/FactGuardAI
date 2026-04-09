@@ -54,54 +54,52 @@ FactGuard AI is a multi-agent system built on CrewAI and powered by Google Gemin
 ```mermaid
 graph TD
     %% User and Interface
-    User[👤 User] -->|1. Enters Claim| UI(🖥️ Streamlit Web Interface);
+    User[User] -->|1. Enters Claim| UI(Streamlit Web Interface)
     
     %% Orchestration Layer
-    subgraph CrewAI Orchestrator [🛠️ CrewAI Agentic Orchestrator]
-        Researcher[🔍 Lead Researcher Agent]
-        Analyst[📊 Data Analyst Agent]
-        Critic[⚖️ Fact-Check Critic Agent]
+    subgraph Orchestrator ["CrewAI Agentic Orchestrator"]
+        Researcher[Lead Researcher Agent]
+        Analyst[Data Analyst Agent]
+        Critic[Fact-Check Critic Agent]
     end
     
-    UI -->|2. Kickoff Crew| CrewAI Orchestrator;
+    UI -->|2. Kickoff Crew| Orchestrator
     
     %% Tool and API Layer
-    subgraph Data Tools [🌐 Real-Time Data Layer]
-        Tavily[🦅 Tavily Search API]
+    subgraph DataTools ["Real-Time Data Layer"]
+        Tavily[Tavily Search API]
     end
     
-    subgraph Intelligence Layer [🧠 LLM Inference Layer]
-        Groq[🏎️ Groq / Llama-3-8B]
-        Gemini[✨ Gemini 2.5 Flash]
+    subgraph Intelligence ["LLM Inference Layer"]
+        Groq[Groq / Llama-3-8B]
+        Gemini[Gemini 2.5 Flash]
     end
     
     %% Agent Communication and Tool Calls
-    CrewAI Orchestrator -->|Internal Handoff| Researcher;
-    Researcher -->|3. Tool Call| Tavily;
-    Tavily -->|4. Search Snippets (k=2)| Researcher;
+    Orchestrator -->|Internal Handoff| Researcher
+    Researcher -->|3. Tool Call| Tavily
+    Tavily -->|4. Search Snippets| Researcher
     
-    Researcher -->|5. Forward Facts| Analyst;
-    Analyst -->|6. Call LLM for Logic| Intelligence Layer;
-    Intelligence Layer -->|7. Factual Inference| Analyst;
+    Researcher -->|5. Forward Facts| Analyst
+    Analyst -->|6. Call LLM for Logic| Intelligence
+    Intelligence -->|7. Factual Inference| Analyst
     
-    Analyst -->|8. Forward Analysis| Critic;
-    Critic -->|9. Hallucination Check| Intelligence Layer;
-    Intelligence Layer -->|10. Validation & Score| Critic;
+    Analyst -->|8. Forward Analysis| Critic
+    Critic -->|9. Hallucination Check| Intelligence
+    Intelligence -->|10. Validation & Score| Critic
     
     %% Final Output
-    Critic -->|11. Final Report| CrewAI Orchestrator;
-    CrewAI Orchestrator -->|12. Display Result| UI;
-    UI -->|13. Final Verified Verdict| User;
+    Critic -->|11. Final Report| Orchestrator
+    Orchestrator -->|12. Display Result| UI
+    UI -->|13. Final Verdict| User
 
-    %% Styling for clarity
-    style User fill:#fff,stroke:#333,stroke-width:2px;
-    style UI fill:#e1f5fe,stroke:#0277bd,stroke-width:2px;
-    style CrewAI Orchestrator fill:#fff,stroke:#000,stroke-width:2px,stroke-dasharray: 5 5;
-    style Researcher fill:#f9fbe7,stroke:#827717,stroke-width:2px;
-    style Analyst fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px;
-    style Critic fill:#e0f2f1,stroke:#00695c,stroke-width:2px;
-    style Tavily fill:#fff3e0,stroke:#e65100,stroke-width:2px;
-    style Intelligence Layer fill:#fff,stroke:#000,stroke-width:2px;
+    %% Styling
+    style User fill:#fff,stroke:#333,stroke-width:2px
+    style UI fill:#e1f5fe,stroke:#0277bd,stroke-width:2px
+    style Orchestrator fill:#fff,stroke:#000,stroke-width:2px,stroke-dasharray: 5 5
+    style Researcher fill:#f9fbe7,stroke:#827717,stroke-width:2px
+    style Analyst fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
+    style Critic fill:#e0f2f1,stroke:#00695c,stroke-width:2px
 ```
 
 
