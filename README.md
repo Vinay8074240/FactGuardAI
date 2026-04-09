@@ -52,16 +52,43 @@ FactGuard AI is a multi-agent system built on CrewAI and powered by Google Gemin
 
 
 ```mermaid
+<<<<<<< HEAD
 
+=======
+>>>>>>> 768d2e7195987e285b8e368939641c832d547c04
 graph TD
+    %% User Interface Layer
+    User[User] -->|1. Enters Claim/Topic| ST_UI[Streamlit UI]
+    ST_UI -->|2. Triggers Workflow| Main_Orch[Main Orchestrator main.py]
 
-&#x20;   %% User Interface Layer
+    %% Agent & Orchestration Layer
+    subgraph CrewAI_Framework [CrewAI Multi-Agent Squad]
+        direction TB
+        Main_Orch -->|3. Kickoff| Agent_Res[Lead Researcher]
+        Agent_Res -->|4. Collects Data| Agent_Ana[Data Analyst]
+        Agent_Ana -->|5. Structures Facts| Agent_Cri[Fact-Check Critic]
 
+<<<<<<< HEAD
 &#x20;   User\[User] -->|1. Enters Claim/Topic| ST\_UI\[Streamlit UI]
 
 &#x20;   ST\_UI -->|2. Triggers Workflow| Main\_Orch\[Main Orchestrator main.py]
+=======
+        %% Feedback Loop
+        Agent_Cri -->|6. Loop Back if needed| Agent_Res
+    end
 
+    %% External Tools & LLM Layer
+    subgraph External_Integrations [External Tools & Brain]
+        Agent_Res -->|7. Search Query| Tool_Tavily[Tavily Search API]
+        Tool_Tavily -->|8. Results| Agent_Res
+>>>>>>> 768d2e7195987e285b8e368939641c832d547c04
 
+        Agent_Res -->|9. Reasoning| LLM_Gemini[Google Gemini]
+        Agent_Ana -->|9. Reasoning| LLM_Gemini
+        Agent_Cri -->|9. Reasoning| LLM_Gemini
+    end
+
+<<<<<<< HEAD
 
 &#x20;   %% Agent \& Orchestration Layer
 
@@ -113,6 +140,12 @@ graph TD
 
 &#x20;   ST\_UI -->|12. Show Output| User
 
+=======
+    %% Final Output Layer
+    Agent_Cri -->|10. Final Report| Main_Orch
+    Main_Orch -->|11. Display Results| ST_UI
+    ST_UI -->|12. Show Output| User
+>>>>>>> 768d2e7195987e285b8e368939641c832d547c04
 ```
 
 
@@ -127,9 +160,9 @@ graph TD
 
 &#x20;       i) Clone the Repo:
 
-&#x20;             git clone https://github.com/yourusername/FactGuard-AI.git
+&#x20;             git clone https://github.com/Vinay8074240/FactGuardAI.git
 
-&#x20;             cd FactGuard-AI
+&#x20;             cd FactGuardAI
 
 &#x20;       ii) Create Virtual Environment:
 
