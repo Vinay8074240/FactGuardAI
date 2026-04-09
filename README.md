@@ -165,7 +165,10 @@ graph TD
 
 
 
-<video src="https://github.com/Vinay8074240/FactGuardAI/assets/demo.mp4" width="100%" controls></video>
+
+https://github.com/user-attachments/assets/46bfa03c-dc5e-46df-87d9-51547b006ed0
+
+
 
 
 
