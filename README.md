@@ -108,7 +108,7 @@ graph TD
 
 
 * **Prerequisites:** Python 3.12
-* **API Keys:** Google AI Studio (Gemini), Tavily AI.
+* **API Keys:** Groq , Tavily AI.
 * **Setup Steps:**
 
 
